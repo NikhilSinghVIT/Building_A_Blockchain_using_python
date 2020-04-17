@@ -78,6 +78,13 @@ def index():
     return render_template('./index.html')
 
 
+@app.route('/transactions/get', methods=['GET'])
+def get_transactions():
+    transactions = blockchain.transactions
+    response = {'transactions': transactions}
+    return jsonify(response), 200
+
+
 @app.route('/transactions/new', methods=['POST'])
 def new_transaction():
     # Check the required fields
